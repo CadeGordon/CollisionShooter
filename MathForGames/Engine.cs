@@ -67,15 +67,20 @@ namespace MathForGames
             Scene scene = new Scene();
 
             Player player = new Player('@', 4, 1, 100,Color.PURPLE, "Player");
-            player.CollisionRadius = 20;
+            player.CollisionRadius = 15;
             Enemy enemy = new Enemy('Y', 300, 300, 100, 50, player, Color.BLUE, "Enemy");
-            enemy.CollisionRadius = 20;
+            enemy.CollisionRadius = 15;
+            Enemy enemy2 = new Enemy('B', 250, 250, 100, 50, player, Color.RED, "Enemy");
+            enemy2.CollisionRadius = 15;
+            Enemy enemy3 = new Enemy('L', 150, 150, 100, 50, player, Color.DARKPURPLE, "Enemy");
             
            
             UIText text = new UIText(10, 10, "TestBox", Color.LIME, 70, 70, 15, "This is the test text \n it is not to be taken seriously");
 
             scene.AddActor(player);
             scene.AddActor(enemy);
+            scene.AddActor(enemy2);
+            scene.AddActor(enemy3);
             
 
             _currentSeneIndex = AddScene(scene);
@@ -102,7 +107,7 @@ namespace MathForGames
         private void Draw()
         {
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.PINK);
+            Raylib.ClearBackground(Color.BLACK);
 
             //Adds all actor icons to buffer
             _scenes[_currentSeneIndex].Draw();
