@@ -39,7 +39,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_UP)))
             {
-                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, 0, -1, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 0, -1, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
                 bullet.CollisionRadius = 5;
 
@@ -47,7 +47,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)))
             {
-                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, 0, 1, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 0, 1, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
                 bullet.CollisionRadius = 5;
 
@@ -55,7 +55,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)))
             {
-                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, -1, 0, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, -1, 0, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
                 bullet.CollisionRadius = 5;
 
@@ -63,7 +63,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)))
             {
-                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, 1, 0, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 1, 0, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
                 bullet.CollisionRadius = 5;
 
