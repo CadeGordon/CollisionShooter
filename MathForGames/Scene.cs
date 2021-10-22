@@ -10,11 +10,13 @@ namespace MathForGames
         /// Array that contains all actors in the scene
         /// </summary>
         private Actor[] _actors;
+        private Actor[] _UIElements;
 
 
         public Scene()
         {
             _actors = new Actor[0];
+            _UIElements = new Actor[0];
         }
 
         /// <summary>
@@ -33,14 +35,14 @@ namespace MathForGames
         /// Calls update for every actor in the scene. 
         /// Calls start for the actor if it hasnt already been called.
         /// </summary>
-        public virtual void Update(float deltaTime)
+        public virtual void Update(float deltaTime, Scene currentScene)
         {
             for (int i = 0; i < _actors.Length; i++)
             {
                 if (!_actors[i].Started)
                    _actors[i].Start();
 
-                _actors[i].Update(deltaTime);
+                _actors[i].Update(deltaTime, currentScene);
 
                 //Check for collision
                 for (int j = 0; j < _actors.Length; j++)
@@ -50,6 +52,28 @@ namespace MathForGames
                 }
             }
         }
+
+        public virtual void UpdateUI(float deltaTime, Scene currentScene)
+        {
+            for (int i = 0; i < _UIElements.Length; i++)
+            {
+                if (!_UIElements[i].Started)
+                    _UIElements[i].Start();
+
+                _UIElements[i].Update(deltaTime, currentScene);
+            }
+            
+        }
+
+        public virtual void DrawUI()
+        {
+            for (int i = 0; i < _UIElements.Length; i++)
+            {
+                _UIElements[i].Draw();
+            }
+        }
+
+
 
         /// <summary>
         /// Calls draw for every actor in the array
@@ -71,6 +95,46 @@ namespace MathForGames
             {
                 _actors[i].End();
             }
+        }
+
+        public virtual void AddUIElement(Actor UI)
+        {
+            Actor[] tempArray = new Actor[_UIElements.Length + 1];
+
+            for(int i = 0; i < _UIElements.Length; i++)
+            {
+                tempArray[i] = _UIElements[i];
+            }
+
+            tempArray[_UIElements.Length] = UI;
+
+            _UIElements = tempArray;
+        }
+
+        public virtual bool RemoveUIElement(Actor UI)
+        {
+            bool actorRemoved = false;
+
+            Actor[] tempArray = new Actor[_UIElements.Length - 1];
+
+            int j = 0;
+            for ( int i = 0; i < tempArray.Length; i++)
+            {
+                if (_UIElements[i] != UI)
+                {
+                    tempArray[j] = _UIElements[i];
+                    j++;
+                }
+                else
+                {
+                    actorRemoved = true;
+                }
+            }
+
+            if (actorRemoved)
+                _UIElements = tempArray;
+
+            return actorRemoved;
         }
 
         /// <summary>

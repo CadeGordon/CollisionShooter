@@ -37,7 +37,7 @@ namespace MathForGames
             _viewDistance = viewDistance;
         }
 
-        public override void Update(float deltaTime)
+        public override void Update(float deltaTime, Scene currentScene)
         {
 
             float xDirection = _target.Postion.X - Postion.X;
@@ -51,7 +51,7 @@ namespace MathForGames
             if(GetTargetInSight())
                Postion += Velocity;
 
-            base.Update(deltaTime);
+            base.Update(deltaTime, currentScene);
 
         }
 

@@ -29,7 +29,7 @@ namespace MathForGames
             _speed = speed;
         }
 
-        public override void Update(float deltaTime)
+        public override void Update(float deltaTime, Scene currentScene)
         {
             int xDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
@@ -37,10 +37,42 @@ namespace MathForGames
             int yDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_UP)))
             {
-                Postion = new Vector2 { X = 3 };
+                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, 0, -1, 100, Color.WHITE, "Bullet");
+                currentScene.AddActor(bullet);
+                bullet.CollisionRadius = 5;
+
             }
+
+            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)))
+            {
+                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, 0, 1, 100, Color.WHITE, "Bullet");
+                currentScene.AddActor(bullet);
+                bullet.CollisionRadius = 5;
+
+            }
+
+            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)))
+            {
+                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, -1, 0, 100, Color.WHITE, "Bullet");
+                currentScene.AddActor(bullet);
+                bullet.CollisionRadius = 5;
+
+            }
+
+            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)))
+            {
+                Bullet bullet = new Bullet('-', Postion.X, Postion.Y, 1, 0, 100, Color.WHITE, "Bullet");
+                currentScene.AddActor(bullet);
+                bullet.CollisionRadius = 5;
+
+            }
+
+
+
+
+
 
 
 
@@ -51,7 +83,7 @@ namespace MathForGames
 
             Postion += Velocity;
 
-            base.Update(deltaTime);
+            base.Update(deltaTime, currentScene);
             
         }
 

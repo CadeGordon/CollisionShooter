@@ -72,7 +72,7 @@ namespace MathForGames
             _started = true;
         }
 
-        public virtual void Update(float deltaTime)
+        public virtual void Update(float deltaTime, Scene currentScene)
         {
             Console.WriteLine(_name + ": " + Postion.X + ", " + Postion.Y);
 
