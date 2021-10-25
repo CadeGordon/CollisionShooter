@@ -39,37 +39,41 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_UP)))
             {
-                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 0, -1, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('^', Postion.X, Postion.Y, 0, -1, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                CircleCollider bulletCollider = new CircleCollider(5, bullet);
-                bullet.Collider = bulletCollider;
+                CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+                AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+                bullet.Collider = bulletBoxCollider;
 
             }
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_DOWN)))
             {
-                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 0, 1, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('v', Postion.X, Postion.Y, 0, 1, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                CircleCollider bulletCollider = new CircleCollider(5, bullet);
-                bullet.Collider = bulletCollider;
+                CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+                AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+                bullet.Collider = bulletBoxCollider;
 
             }
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT)))
             {
-                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, -1, 0, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('<', Postion.X, Postion.Y, -1, 0, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                CircleCollider bulletCollider = new CircleCollider(5, bullet);
-                bullet.Collider = bulletCollider;
+                CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+                AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+                bullet.Collider = bulletBoxCollider;
 
             }
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT)))
             {
-                Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 1, 0, 100, Color.WHITE, "Bullet");
+                Bullet bullet = new Bullet('>', Postion.X, Postion.Y, 1, 0, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                CircleCollider bulletCollider = new CircleCollider(5, bullet);
-                bullet.Collider = bulletCollider;
+                CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+                AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+                bullet.Collider = bulletBoxCollider;
 
             }
 
@@ -91,10 +95,16 @@ namespace MathForGames
             
         }
 
-        public override void OnCollision(Actor actor)
+        public override void OnCollision(Actor actor, Scene currentScene)
         {
             if (actor is Enemy)
                 Engine.CloseApplication();
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+            Collider.Draw();
         }
 
     }

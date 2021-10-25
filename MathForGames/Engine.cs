@@ -71,20 +71,24 @@ namespace MathForGames
             
             
             Player player = new Player('@', 4, 1, 100,Color.PURPLE, "Player");
-            CircleCollider playerCollider = new CircleCollider(10, player);
-            player.Collider = playerCollider;
+            CircleCollider playerCircleCollider = new CircleCollider(25, player);
+            AABBCollider playerBoxCollider = new AABBCollider(50, 50, player);
+            player.Collider = playerCircleCollider;
 
             Enemy enemy = new Enemy('Y', 300, 300, 100, 50, player, Color.BLUE, "Enemy");
-            CircleCollider enemyCollider = new CircleCollider(10, enemy);
-            enemy.Collider = enemyCollider;
+            CircleCollider enemyCircleCollider = new CircleCollider(10, enemy);
+            AABBCollider enemyBoxCollider = new AABBCollider(50, 50, enemy);
+            enemy.Collider = enemyBoxCollider;
 
             Enemy enemy2 = new Enemy('B', 250, 250, 100, 50, player, Color.RED, "Enemy");
-            CircleCollider enemy2Collider = new CircleCollider(10, enemy2);
-            enemy2.Collider = enemy2Collider;
+            CircleCollider enemy2CircleCollider = new CircleCollider(10, enemy2);
+            AABBCollider enemy2BoxCollider = new AABBCollider(50, 50, enemy2);
+            enemy2.Collider = enemy2BoxCollider;
 
             Enemy enemy3 = new Enemy('L', 150, 150, 100, 50, player, Color.DARKPURPLE, "Enemy");
-            CircleCollider enemy3Collider = new CircleCollider(10, enemy3);
-            enemy3.Collider = enemy3Collider;
+            CircleCollider enemy3CircleCollider = new CircleCollider(10, enemy3);
+            AABBCollider enemy3BoxCollider = new AABBCollider(50, 50, enemy3);
+            enemy3.Collider = enemy3BoxCollider;
 
 
 

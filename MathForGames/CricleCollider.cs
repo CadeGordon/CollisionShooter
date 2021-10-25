@@ -33,5 +33,34 @@ namespace MathForGames
 
             return distance <= combinedRadii;
         }
+
+        public override bool CheckCollisionAABB(AABBCollider other)
+        {
+            //Retunr false if this collider is checking collision againts itself
+            if (other.Owner == Owner)
+                return false;
+
+            //get the direction fromt this collider to teh aabb
+            Vector2 direction = Owner.Postion - other.Owner.Postion;
+
+            //Clamp the direction vector to be withn the bounds of the AABB
+            direction.X = Math.Clamp(direction.X, -other.Width/2, other.Width/2);
+            direction.Y = Math.Clamp(direction.Y, -other.Height/2, other.Height/2);
+
+            //Add the direction vector to the AABB center to hget the closest point to the circle
+            Vector2 closestPoint = other.Owner.Postion + direction;
+
+            //Find the distance from the circl'es center to the closest point 
+            float distanceFromClosestPoint = Vector2.Distance(Owner.Postion, closestPoint);
+
+            //Return whether or not the distance is less than the circles radius
+            return distanceFromClosestPoint <= CollisionRadius;
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+            Raylib.DrawCircleLines((int)Owner.Postion.X, (int)Owner.Postion.Y, CollisionRadius, Color.GOLD);
+        }
     }
 }

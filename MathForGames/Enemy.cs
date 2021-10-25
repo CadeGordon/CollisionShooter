@@ -67,9 +67,16 @@ namespace MathForGames
             return Vector2.DotProdcut(directionOfTarget, Forward) > 0.5 && distance < _viewDistance;
         }
 
-        public override void OnCollision(Actor actor)
+        public override void OnCollision(Actor actor, Scene currentScene)
         {
-            Console.WriteLine("Collisoin occured");
+            currentScene.RemoveActor(actor);
+            currentScene.RemoveActor(this);
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+            Collider.Draw();
         }
     }
 }

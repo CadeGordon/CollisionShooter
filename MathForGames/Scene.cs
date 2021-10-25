@@ -47,8 +47,12 @@ namespace MathForGames
                 //Check for collision
                 for (int j = 0; j < _actors.Length; j++)
                 {
-                    if (_actors[i].CheckForCollision( _actors[j]) && j != i)
-                        _actors[i].OnCollision(_actors[j]);
+                    if (i < _actors.Length)
+                    {
+                        if (_actors[i].CheckForCollision(_actors[j]) && j != i)
+                            _actors[i].OnCollision(_actors[j], currentScene);
+                    }
+                    
                 }
             }
         }
@@ -82,6 +86,11 @@ namespace MathForGames
         {
             for (int i = 0; i < _actors.Length; i++)
             {
+                if (!_actors[i].Started)
+                {
+                    _actors[i].Start();
+                }
+                    
                 _actors[i].Draw();
             }
         }
@@ -174,7 +183,7 @@ namespace MathForGames
 
             //Copy all values except the actor we dont want into the new array
             int j = 0;
-            for (int i = 0; i < tempArray.Length; i++)
+            for (int i = 0; i < _actors.Length; i++)
             {
                 //if the actor taht the loop is on is not the one to remove...
                 if ( _actors[i] != actor)
