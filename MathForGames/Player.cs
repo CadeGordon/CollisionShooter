@@ -37,35 +37,39 @@ namespace MathForGames
             int yDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
-            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_UP)))
+            if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_UP)))
             {
                 Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 0, -1, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                bullet.CollisionRadius = 5;
+                CircleCollider bulletCollider = new CircleCollider(5, bullet);
+                bullet.Collider = bulletCollider;
 
             }
 
-            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)))
+            if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_DOWN)))
             {
                 Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 0, 1, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                bullet.CollisionRadius = 5;
+                CircleCollider bulletCollider = new CircleCollider(5, bullet);
+                bullet.Collider = bulletCollider;
 
             }
 
-            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)))
+            if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT)))
             {
                 Bullet bullet = new Bullet('.', Postion.X, Postion.Y, -1, 0, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                bullet.CollisionRadius = 5;
+                CircleCollider bulletCollider = new CircleCollider(5, bullet);
+                bullet.Collider = bulletCollider;
 
             }
 
-            if (Convert.ToBoolean(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)))
+            if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT)))
             {
                 Bullet bullet = new Bullet('.', Postion.X, Postion.Y, 1, 0, 100, Color.WHITE, "Bullet");
                 currentScene.AddActor(bullet);
-                bullet.CollisionRadius = 5;
+                CircleCollider bulletCollider = new CircleCollider(5, bullet);
+                bullet.Collider = bulletCollider;
 
             }
 
