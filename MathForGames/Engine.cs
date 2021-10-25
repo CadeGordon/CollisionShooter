@@ -77,6 +77,7 @@ namespace MathForGames
             Enemy enemy2 = new Enemy('B', 250, 250, 100, 50, player, Color.RED, "Enemy");
             enemy2.CollisionRadius = 15;
             Enemy enemy3 = new Enemy('L', 150, 150, 100, 50, player, Color.DARKPURPLE, "Enemy");
+            enemy3.CollisionRadius = 15;
 
             
 

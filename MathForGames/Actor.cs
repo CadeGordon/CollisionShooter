@@ -76,11 +76,13 @@ namespace MathForGames
         {
             Console.WriteLine(_name + ": " + Postion.X + ", " + Postion.Y);
 
+            Raylib.DrawCircleLines((int)Postion.X, (int)Postion.Y, CollisionRadius, Color.GREEN);
+
         }
 
         public virtual void Draw()
         {
-            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X, (int)Postion.Y, 50, Icon.Color);
+            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X - 18, (int)Postion.Y - 25, 50, Icon.Color);
         }
 
         public void End()
