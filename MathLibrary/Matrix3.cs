@@ -34,6 +34,9 @@ namespace MathLibrary
         /// <returns>The result of the rotation</returns>
         public static Matrix3 CreateRotation(float radians)
         {
+            return new Matrix3((float)Math.Cos(radians), (float)-Math.Sin(radians), 0,
+                                (float)Math.Sin(radians), (float)Math.Cos(radians), 0,
+                                0, 0, 1);
 
         }
 
@@ -45,7 +48,9 @@ namespace MathLibrary
         /// <returns></returns>
         public static Matrix3 CreateTranslation(float x, float y)
         {
-
+            return new Matrix3(1, 0, x,
+                               0, 1, y,
+                               0, 0, 1);
         }
 
         /// <summary>
@@ -56,7 +61,9 @@ namespace MathLibrary
         /// <returns>The result of the scale</returns>
         public static Matrix3 CreateScale(float x, float y)
         {
-            
+            return new Matrix3(x, 0, 0,
+                               0, y, 0,
+                               0, 0, 1);
         }
         
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
