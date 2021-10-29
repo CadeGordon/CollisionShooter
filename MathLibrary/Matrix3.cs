@@ -40,8 +40,8 @@ namespace MathLibrary
         /// <summary>
         /// Creates a new matix that has been translted by the
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The x position of the new matrix</param>
+        /// <param name="y">The y position of the new matrix </param>
         /// <returns></returns>
         public static Matrix3 CreateTranslation(float x, float y)
         {
@@ -56,22 +56,39 @@ namespace MathLibrary
         /// <returns>The result of the scale</returns>
         public static Matrix3 CreateScale(float x, float y)
         {
-
+            
         }
         
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
-
+            return new Matrix3 { M00 = lhs.M00 + rhs.M00, M01 = lhs.M01 + rhs.M01, M02 = lhs.M02 + rhs.M02,
+                                 M10 = lhs.M10 + rhs.M10, M11 = lhs.M11 + rhs.M11, M12 = lhs.M12 + rhs.M12,
+                                 M20 = lhs.M20 + rhs.M20, M21 = lhs.M21 + rhs.M21, M22 = lhs.M22 + rhs.M22};
+             
         }
 
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
-
+            return new Matrix3 { M00 =lhs.M00 - rhs.M00, M01 = lhs.M01 - rhs.M01, M02 = lhs.M02 - rhs.M02,
+                                 M10 = lhs.M10 - rhs.M10, M11 = lhs.M11 - rhs.M11, M12 = lhs.M12 - rhs.M12,
+                                 M20 = lhs.M20 - rhs.M20, M21 = lhs.M21 - rhs.M21, M22 = lhs.M22 - rhs.M22};
         }
 
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
+            Matrix3 tempMatrix = new Matrix3();
 
+            tempMatrix.M00 = (lhs.M00 * rhs.M02) + (lhs.M01 * rhs.M10) + (lhs.M02 * rhs.M20);
+            tempMatrix.M01 = (lhs.M00 * rhs.M12) + (lhs.M01 * rhs.M11) + (lhs.M02 * rhs.M21);
+            tempMatrix.M02 = (lhs.M00 * rhs.M22) + (lhs.M01 * rhs.M10) + (lhs.M02 * rhs.M20);
+            tempMatrix.M10 = (lhs.M10 * rhs.M00) + (lhs.M11 * rhs.M10) + (lhs.M12 * rhs.M20);
+            tempMatrix.M11 = (lhs.M10 * rhs.M01) + (lhs.M11 * rhs.M11) + (lhs.M12 * rhs.M21);
+            tempMatrix.M12 = (lhs.M10 * rhs.M02) + (lhs.M11 * rhs.M12) + (lhs.M12 * rhs.M22);
+            tempMatrix.M20 = (lhs.M20 * rhs.M00) + (lhs.M21 * rhs.M10) + (lhs.M22 * rhs.M20);
+            tempMatrix.M21 = (lhs.M20 * rhs.M01) + (lhs.M21 * rhs.M11) + (lhs.M22 * rhs.M21);
+            tempMatrix.M20 = (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22);
+
+            return tempMatrix;
         }
     }
 }

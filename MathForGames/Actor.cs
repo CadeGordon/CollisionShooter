@@ -168,10 +168,10 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// 
+        /// Scales the actor by the given amount
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The value to scale on the x axis</param>
+        /// <param name="y">The value to scale on the y axis</param>
         public void Scale(float x, float y)
         {
 
