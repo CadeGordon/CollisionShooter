@@ -34,8 +34,8 @@ namespace MathLibrary
         /// <returns>The result of the rotation</returns>
         public static Matrix3 CreateRotation(float radians)
         {
-            return new Matrix3((float)Math.Cos(radians), (float)-Math.Sin(radians), 0,
-                                (float)Math.Sin(radians), (float)Math.Cos(radians), 0,
+            return new Matrix3((float)Math.Cos(radians), (float)Math.Sin(radians), 0,
+                                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0,
                                 0, 0, 1);
 
         }
@@ -68,34 +68,45 @@ namespace MathLibrary
         
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3 { M00 = lhs.M00 + rhs.M00, M01 = lhs.M01 + rhs.M01, M02 = lhs.M02 + rhs.M02,
-                                 M10 = lhs.M10 + rhs.M10, M11 = lhs.M11 + rhs.M11, M12 = lhs.M12 + rhs.M12,
-                                 M20 = lhs.M20 + rhs.M20, M21 = lhs.M21 + rhs.M21, M22 = lhs.M22 + rhs.M22};
+            return new Matrix3  (lhs.M00 + rhs.M00, lhs.M01 + rhs.M01, lhs.M02 + rhs.M02,
+                                 lhs.M10 + rhs.M10, lhs.M11 + rhs.M11, lhs.M12 + rhs.M12,
+                                 lhs.M20 + rhs.M20, lhs.M21 + rhs.M21, lhs.M22 + rhs.M22);
              
         }
 
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3 { M00 =lhs.M00 - rhs.M00, M01 = lhs.M01 - rhs.M01, M02 = lhs.M02 - rhs.M02,
-                                 M10 = lhs.M10 - rhs.M10, M11 = lhs.M11 - rhs.M11, M12 = lhs.M12 - rhs.M12,
-                                 M20 = lhs.M20 - rhs.M20, M21 = lhs.M21 - rhs.M21, M22 = lhs.M22 - rhs.M22};
+            return new Matrix3  (lhs.M00 - rhs.M00, lhs.M01 - rhs.M01, lhs.M02 - rhs.M02,
+                                 lhs.M10 - rhs.M10, lhs.M11 - rhs.M11, lhs.M12 - rhs.M12,
+                                 lhs.M20 - rhs.M20, lhs.M21 - rhs.M21, lhs.M22 - rhs.M22);
         }
 
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
-            Matrix3 tempMatrix = new Matrix3();
+            return new Matrix3
+                (
+                  //Row 1, Column1
+                  lhs.M00 * rhs.M00 + lhs.M01 * rhs.M10 + lhs.M02 * rhs.M20,
+                  //Row 1, Column 2
+                  lhs.M00 * rhs.M01 + lhs.M01 * rhs.M11 + lhs.M02 * rhs.M21,
+                  //Row 1, Column 3
+                  lhs.M00 * rhs.M02 + lhs.M01 * rhs.M12 + lhs.M02 * rhs.M22,
 
-            tempMatrix.M00 = (lhs.M00 * rhs.M02) + (lhs.M01 * rhs.M10) + (lhs.M02 * rhs.M20);
-            tempMatrix.M01 = (lhs.M00 * rhs.M12) + (lhs.M01 * rhs.M11) + (lhs.M02 * rhs.M21);
-            tempMatrix.M02 = (lhs.M00 * rhs.M22) + (lhs.M01 * rhs.M10) + (lhs.M02 * rhs.M20);
-            tempMatrix.M10 = (lhs.M10 * rhs.M00) + (lhs.M11 * rhs.M10) + (lhs.M12 * rhs.M20);
-            tempMatrix.M11 = (lhs.M10 * rhs.M01) + (lhs.M11 * rhs.M11) + (lhs.M12 * rhs.M21);
-            tempMatrix.M12 = (lhs.M10 * rhs.M02) + (lhs.M11 * rhs.M12) + (lhs.M12 * rhs.M22);
-            tempMatrix.M20 = (lhs.M20 * rhs.M00) + (lhs.M21 * rhs.M10) + (lhs.M22 * rhs.M20);
-            tempMatrix.M21 = (lhs.M20 * rhs.M01) + (lhs.M21 * rhs.M11) + (lhs.M22 * rhs.M21);
-            tempMatrix.M20 = (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22);
+                  //Row 2, Column 1
+                  lhs.M10 * rhs.M00 + lhs.M11 * rhs.M10 + lhs.M12 * rhs.M20,
+                  //Row 2, Column 2
+                  lhs.M10 * rhs.M01 + lhs.M11 * rhs.M11 + lhs.M12 * rhs.M21,
+                  //Row 2, Column 3
+                  lhs.M10 * rhs.M02 + lhs.M21 * rhs.M11 + lhs.M22 * rhs.M22,
 
-            return tempMatrix;
+                  //Row 3, Column 1
+                  lhs.M20 * rhs.M00 + lhs.M21 * rhs.M10 + lhs.M22 * rhs.M22,
+                  //Row 3 , Column 2
+                  lhs.M20 * rhs.M01 + lhs.M21 * rhs.M11 + lhs.M22 * rhs.M21,
+                  //Row 3, Coloum 2
+                  lhs.M20 * rhs.M02 + lhs.M21 * rhs.M12 + lhs.M22 * rhs.M22
+                );
+
         }
     }
 }
