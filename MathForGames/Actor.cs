@@ -13,10 +13,13 @@ namespace MathForGames
         private bool _started;
         private Vector2 _forward = new Vector2(1,0);
         private Collider _collider;
-        private Matrix3 _transform = Matrix3.Identity;
+        private Matrix3 _globalTransform = Matrix3.Identity;
+        private Matrix3 _localTransform = Matrix3.Identity;
         private Matrix3 _translation = Matrix3.Identity;
         private Matrix3 _rotation = Matrix3.Identity;
         private Matrix3 _scale = Matrix3.Identity;
+        private Actor[] _children = new Actor[0];
+        private Actor _parent;
         private Sprite _sprite;
 
         /// <summary>
@@ -27,7 +30,7 @@ namespace MathForGames
             get { return _started; }
         }
 
-        public Vector2 Postion
+        public Vector2 LocalPosition
         {
             get { return new Vector2(_translation.M02, _translation.M12); }
             set 
@@ -35,6 +38,47 @@ namespace MathForGames
                 SetTranslation(value.X, value.Y);
             }
         }
+
+        public void UpdateTransform()
+        {
+
+        }
+
+        public void AddChild(Actor child)
+        {
+
+        }
+
+        public bool RemoveChild(Actor child)
+        {
+            return;
+        }
+
+        public Vector2 WorldPosition
+        {
+            get; set;
+        }
+
+        public Matrix3 GlobalTransform
+        {
+            get; set;
+        }
+
+        public Matrix3 LocalTransform
+        {
+            get; set;
+        }
+
+        public Actor Parent
+        {
+            get; set;
+        }
+
+        public Actor[] Children
+        {
+            get;
+        }
+
 
         public Vector2 Size
         {
@@ -93,7 +137,7 @@ namespace MathForGames
 
         public virtual void Update(float deltaTime, Scene currentScene)
         {
-            _transform = _translation * _rotation * _scale;
+            _localTransform = _translation * _rotation * _scale;
             Console.WriteLine(_name + ": " + Postion.X + ", " + Postion.Y);
 
         }
@@ -101,7 +145,7 @@ namespace MathForGames
         public virtual void Draw()
         {
             if (_sprite != null)
-                _sprite.Draw(_transform);
+                _sprite.Draw(_localTransform);
         }
 
         public void End()
