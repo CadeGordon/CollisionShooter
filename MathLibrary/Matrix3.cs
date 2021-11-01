@@ -97,10 +97,10 @@ namespace MathLibrary
                   //Row 2, Column 2
                   lhs.M10 * rhs.M01 + lhs.M11 * rhs.M11 + lhs.M12 * rhs.M21,
                   //Row 2, Column 3
-                  lhs.M10 * rhs.M02 + lhs.M21 * rhs.M11 + lhs.M22 * rhs.M22,
+                  lhs.M10 * rhs.M02 + lhs.M11 * rhs.M12 + lhs.M12 * rhs.M22,
 
                   //Row 3, Column 1
-                  lhs.M20 * rhs.M00 + lhs.M21 * rhs.M10 + lhs.M22 * rhs.M22,
+                  lhs.M20 * rhs.M00 + lhs.M21 * rhs.M10 + lhs.M22 * rhs.M20,
                   //Row 3 , Column 2
                   lhs.M20 * rhs.M01 + lhs.M21 * rhs.M11 + lhs.M22 * rhs.M21,
                   //Row 3, Coloum 2

@@ -72,6 +72,7 @@ namespace MathForGames
             
             Player player = new Player( 4, 1, 100, "Player", "Images/player.png");
             player.SetScale(50, 50);
+            player.SetRotation(1);
             CircleCollider playerCircleCollider = new CircleCollider(25, player);
             AABBCollider playerBoxCollider = new AABBCollider(50, 50, player);
             player.Collider = playerCircleCollider;
@@ -81,6 +82,8 @@ namespace MathForGames
             CircleCollider enemyCircleCollider = new CircleCollider(10, enemy);
             AABBCollider enemyBoxCollider = new AABBCollider(50, 50, enemy);
             enemy.Collider = enemyBoxCollider;
+            enemy.LookAt(new Vector2(4, 1));
+            enemy.Forward = new Vector2(4, 1);
 
             Enemy enemy2 = new Enemy(400, 400, 100, 50, player, "Enemy", "Images/enemy.png");
             enemy2.SetScale(50, 50);
