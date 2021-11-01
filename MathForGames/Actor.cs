@@ -51,7 +51,7 @@ namespace MathForGames
 
         public bool RemoveChild(Actor child)
         {
-            return;
+            
         }
 
         public Vector2 WorldPosition
@@ -100,7 +100,7 @@ namespace MathForGames
         public Actor( Vector2 position, string name = "Actor" , string path = "")
 
         {
-            Postion = position;
+            LocalPosition = position;
             _name = name;
 
             if (path != "")
@@ -112,7 +112,7 @@ namespace MathForGames
             get { return new Vector2(_rotation.M00, _rotation.M10); }
             set 
             {
-                Vector2 point = value.Normalized + Postion;
+                Vector2 point = value.Normalized + LocalPosition;
                 LookAt(point);
                     
             }
@@ -138,7 +138,7 @@ namespace MathForGames
         public virtual void Update(float deltaTime, Scene currentScene)
         {
             _localTransform = _translation * _rotation * _scale;
-            Console.WriteLine(_name + ": " + Postion.X + ", " + Postion.Y);
+            Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);
 
         }
 
@@ -238,7 +238,7 @@ namespace MathForGames
         public void LookAt(Vector2 position)
         {
             //FInd the direction that the actor should look in
-            Vector2 direction = (position - Postion).Normalized;
+            Vector2 direction = (position - LocalPosition).Normalized;
 
             //Use the dot product to find the angle the actor needs to rotate
             float dotProd = Vector2.DotProdcut(direction, Forward);

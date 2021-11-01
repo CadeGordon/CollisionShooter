@@ -39,7 +39,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_UP)))
             {
-                Bullet bullet = new Bullet(Postion.X, Postion.Y, 0, -1, 100, "Bullet", "Images/bullet.png");
+                Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, 0, -1, 100, "Bullet", "Images/bullet.png");
                 bullet.SetScale(50, 50);
                 currentScene.AddActor(bullet);
                 CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
@@ -50,7 +50,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_DOWN)))
             {
-                Bullet bullet = new Bullet(Postion.X, Postion.Y, 0, 1, 100, "Bullet", "Images/bullet.png");
+                Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, 0, 1, 100, "Bullet", "Images/bullet.png");
                 bullet.SetScale(50, 50);
                 currentScene.AddActor(bullet);
                 CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
@@ -61,7 +61,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT)))
             {
-                Bullet bullet = new Bullet(Postion.X, Postion.Y, -1, 0, 100, "Bullet", "Images/bullet.png");
+                Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, -1, 0, 100, "Bullet", "Images/bullet.png");
                 bullet.SetScale(50, 50);
                 currentScene.AddActor(bullet);
                 CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
@@ -72,7 +72,7 @@ namespace MathForGames
 
             if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT)))
             {
-                Bullet bullet = new Bullet(Postion.X, Postion.Y, 1, 0, 100, "Bullet", "Images/bullet.png");
+                Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, 1, 0, 100, "Bullet", "Images/bullet.png");
                 bullet.SetScale(50, 50);
                 currentScene.AddActor(bullet);
                 CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
@@ -96,7 +96,7 @@ namespace MathForGames
             if(Velocity.Magnitude > 0)
             Forward = Velocity.Normalized;
 
-            Postion += Velocity;
+            LocalPosition += Velocity;
 
             base.Update(deltaTime, currentScene);
             

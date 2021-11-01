@@ -41,7 +41,7 @@ namespace MathForGames
 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
-            Postion += Velocity;
+            LocalPosition += Velocity;
 
             base.Update(deltaTime, currentScene);
 
